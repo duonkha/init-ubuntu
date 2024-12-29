@@ -54,28 +54,21 @@ else
 	echo "neovim is already installed."
 fi
 
-# ==================== Starship Prompt ====================
-if ! command -v starship &>/dev/null; then
-	echo "Installing Starship prompt..."
-	curl -sS https://starship.rs/install.sh | sh -s -- -y
+# ==================== Tide Prompt ====================
+if ! command -v fisher &>/dev/null; then
+	echo "Installing Fisher package manager for fish..."
+	curl -sL https://git.io/fisher | source && fish -c "fisher install jorgebucaran/fisher"
 else
-	echo "Starship prompt is already installed."
+	echo "Fisher is already installed."
 fi
 
-# Configure Starship for fish
-CONFIG_FISH_PATH=~/.config/fish/config.fish
-if [ -f "$CONFIG_FISH_PATH" ]; then
-	if ! grep -Fxq "starship init fish | source" "$CONFIG_FISH_PATH"; then
-		echo "Configuring Starship prompt for fish..."
-		mkdir -p ~/.config/fish
-		echo 'starship init fish | source' >>"$CONFIG_FISH_PATH"
-	else
-		echo "Starship prompt is already configured for fish."
-	fi
+if ! fish -c "fisher list | grep -q tide"; then
+	echo "Installing Tide prompt for fish..."
+	fish -c "fisher install IlanCosman/tide@v5"
+	echo "Running Tide configuration..."
+	fish -c "tide configure"
 else
-	echo "Creating config.fish and configuring Starship prompt for fish..."
-	mkdir -p ~/.config/fish
-	echo 'starship init fish | source' >"$CONFIG_FISH_PATH"
+	echo "Tide prompt is already installed and configured."
 fi
 
 # ==================== Post-installation ====================
