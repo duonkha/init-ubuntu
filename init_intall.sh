@@ -12,9 +12,7 @@ apt update && apt upgrade -y
 # Install prerequisites
 apt install -y software-properties-common curl git
 
-# Add repositories and install latest versions of fish, tmux, tig, neovim
-
-# Fish Shell
+# ==================== Fish Shell ====================
 if ! command -v fish &>/dev/null; then
 	echo "Installing fish..."
 	add-apt-repository -y ppa:fish-shell/release-3
@@ -23,7 +21,7 @@ else
 	echo "fish is already installed."
 fi
 
-# Tmux
+# ==================== Tmux ====================
 if ! command -v tmux &>/dev/null; then
 	echo "Installing tmux..."
 	apt install -y tmux
@@ -31,7 +29,7 @@ else
 	echo "tmux is already installed."
 fi
 
-# Git
+# ==================== Git ====================
 if ! command -v git &>/dev/null; then
 	echo "Installing git..."
 	apt install -y git
@@ -39,7 +37,7 @@ else
 	echo "git is already installed."
 fi
 
-# Tig
+# ==================== Tig ====================
 if ! command -v tig &>/dev/null; then
 	echo "Installing tig..."
 	apt install -y tig
@@ -47,7 +45,7 @@ else
 	echo "tig is already installed."
 fi
 
-# Neovim
+# ==================== Neovim ====================
 if ! command -v nvim &>/dev/null; then
 	echo "Installing neovim..."
 	add-apt-repository -y ppa:neovim-ppa/stable
@@ -56,7 +54,7 @@ else
 	echo "neovim is already installed."
 fi
 
-# Install Starship prompt
+# ==================== Starship Prompt ====================
 if ! command -v starship &>/dev/null; then
 	echo "Installing Starship prompt..."
 	curl -sS https://starship.rs/install.sh | sh -s -- -y
@@ -73,7 +71,7 @@ else
 	echo "Starship prompt is already configured for fish."
 fi
 
-# Post-installation
+# ==================== Post-installation ====================
 
 # Set fish as default shell if not already
 if [ "$SHELL" != "$(which fish)" ]; then
