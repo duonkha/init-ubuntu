@@ -63,12 +63,19 @@ else
 fi
 
 # Configure Starship for fish
-if ! grep -q "starship init fish" ~/.config/fish/config.fish; then
-	echo "Configuring Starship prompt for fish..."
-	mkdir -p ~/.config/fish
-	echo 'starship init fish | source' >>~/.config/fish/config.fish
+CONFIG_FISH_PATH="~/.config/fish/config.fish"
+if [ -f "$CONFIG_FISH_PATH" ]; then
+	if ! grep -Fxq "starship init fish | source" "$CONFIG_FISH_PATH"; then
+		echo "Configuring Starship prompt for fish..."
+		mkdir -p ~/.config/fish
+		echo 'starship init fish | source' >>"$CONFIG_FISH_PATH"
+	else
+		echo "Starship prompt is already configured for fish."
+	fi
 else
-	echo "Starship prompt is already configured for fish."
+	echo "Creating config.fish and configuring Starship prompt for fish..."
+	mkdir -p ~/.config/fish
+	echo 'starship init fish | source' >"$CONFIG_FISH_PATH"
 fi
 
 # ==================== Post-installation ====================
