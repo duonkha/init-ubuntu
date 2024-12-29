@@ -29,6 +29,15 @@ else
 	echo "tmux is already installed."
 fi
 
+# Install Tmux Plugin Manager (TPM)
+TMUX_PLUGIN_DIR="$HOME/.tmux/plugins/tpm"
+if [ ! -d "$TMUX_PLUGIN_DIR" ]; then
+	echo "Installing Tmux Plugin Manager (TPM)..."
+	git clone https://github.com/tmux-plugins/tpm "$TMUX_PLUGIN_DIR"
+else
+	echo "TPM is already installed."
+fi
+
 # ==================== Git ====================
 if ! command -v git &>/dev/null; then
 	echo "Installing git..."
