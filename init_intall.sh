@@ -63,7 +63,7 @@ else
 fi
 
 # Configure Starship for fish
-CONFIG_FISH_PATH="~/.config/fish/config.fish"
+CONFIG_FISH_PATH=~/.config/fish/config.fish
 if [ -f "$CONFIG_FISH_PATH" ]; then
 	if ! grep -Fxq "starship init fish | source" "$CONFIG_FISH_PATH"; then
 		echo "Configuring Starship prompt for fish..."
