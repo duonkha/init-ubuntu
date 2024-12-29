@@ -56,6 +56,23 @@ else
 	echo "neovim is already installed."
 fi
 
+# Install Starship prompt
+if ! command -v starship &>/dev/null; then
+	echo "Installing Starship prompt..."
+	curl -sS https://starship.rs/install.sh | sh -s -- -y
+else
+	echo "Starship prompt is already installed."
+fi
+
+# Configure Starship for fish
+if ! grep -q "starship init fish" ~/.config/fish/config.fish; then
+	echo "Configuring Starship prompt for fish..."
+	mkdir -p ~/.config/fish
+	echo 'starship init fish | source' >>~/.config/fish/config.fish
+else
+	echo "Starship prompt is already configured for fish."
+fi
+
 # Post-installation
 
 # Set fish as default shell if not already
