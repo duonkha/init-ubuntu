@@ -57,7 +57,7 @@ fi
 # ==================== Tide Prompt ====================
 if ! command -v fisher &>/dev/null; then
 	echo "Installing Fisher package manager for fish..."
-	curl -sL https://git.io/fisher | source && fish -c "fisher install jorgebucaran/fisher"
+	fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
 else
 	echo "Fisher is already installed."
 fi
