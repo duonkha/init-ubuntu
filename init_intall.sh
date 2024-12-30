@@ -80,6 +80,22 @@ else
 	echo "Tide prompt is already installed and configured."
 fi
 
+# ==================== Base16 Shell ====================
+BASE16_SHELL_DIR="$HOME/.config/base16-shell"
+if [ ! -d "$BASE16_SHELL_DIR" ]; then
+	echo "Installing Base16 Shell..."
+	git clone https://github.com/chriskempson/base16-shell.git "$BASE16_SHELL_DIR"
+else
+	echo "Base16 Shell is already installed."
+fi
+
+if ! grep -q "base16-shell" "$HOME/.config/fish/config.fish"; then
+	echo "Configuring Base16 Shell for Fish..."
+	echo -e "\n# Base16 Shell\nset -x BASE16_SHELL \"$BASE16_SHELL_DIR\"\n. \$BASE16_SHELL/profile_helper.fish" >>"$HOME/.config/fish/config.fish"
+else
+	echo "Base16 Shell is already configured for Fish."
+fi
+
 # ==================== Post-installation ====================
 
 # Set fish as default shell if not already
