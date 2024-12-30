@@ -17,6 +17,18 @@ else
 	echo "fish is already installed."
 fi
 
+# Ensure Fish config directory and file exist
+FISH_CONFIG_DIR="$HOME/.config/fish"
+FISH_CONFIG_FILE="$FISH_CONFIG_DIR/config.fish"
+if [ ! -d "$FISH_CONFIG_DIR" ]; then
+	echo "Creating Fish config directory..."
+	mkdir -p "$FISH_CONFIG_DIR"
+fi
+if [ ! -f "$FISH_CONFIG_FILE" ]; then
+	echo "Creating Fish config file..."
+	touch "$FISH_CONFIG_FILE"
+fi
+
 # ==================== Tmux ====================
 if ! command -v tmux &>/dev/null; then
 	echo "Installing tmux..."
@@ -85,9 +97,9 @@ else
 	echo "Base16 Shell is already installed."
 fi
 
-if ! grep -q "base16-shell" "$HOME/.config/fish/config.fish"; then
+if ! grep -q "base16-shell" "$FISH_CONFIG_FILE"; then
 	echo "Configuring Base16 Shell for Fish..."
-	echo -e "\n# Base16 Shell\nset -x BASE16_SHELL \"$BASE16_SHELL_DIR\"\n. \$BASE16_SHELL/profile_helper.fish" >>"$HOME/.config/fish/config.fish"
+	echo -e "\n# Base16 Shell\nset -x BASE16_SHELL \"$BASE16_SHELL_DIR\"\n. \$BASE16_SHELL/profile_helper.fish" >>"$FISH_CONFIG_FILE"
 else
 	echo "Base16 Shell is already configured for Fish."
 fi
