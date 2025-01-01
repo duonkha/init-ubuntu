@@ -75,7 +75,7 @@ if ! command -v nvim &> /dev/null; then
   
   if ! grep -q '/opt/nvim-linux64/bin' "$FISH_CONFIG_FILE"; then
     echo "Adding Neovim to Fish shell PATH..."
-    echo "set -Ux PATH \$PATH /opt/nvim-linux64/bin" >> "$FISH_CONFIG_FILE"
+    echo "set -gx PATH \$PATH /opt/nvim-linux64/bin" >> "$FISH_CONFIG_FILE"
   fi
 else
   echo "neovim is already installed."
