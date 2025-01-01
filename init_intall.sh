@@ -63,12 +63,13 @@ else
 fi
 
 # ==================== Neovim ====================
-if ! command -v nvim &>/dev/null; then
-	echo "Installing neovim..."
-	sudo add-apt-repository -y ppa:neovim-ppa/stable
-	sudo apt update && sudo apt install -y neovim
+if ! command -v nvim &> /dev/null; then
+  echo "Installing latest prebuilt Neovim..."
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+  chmod u+x nvim.appimage
+  sudo mv nvim.appimage /usr/local/bin/nvim
 else
-	echo "neovim is already installed."
+  echo "neovim is already installed."
 fi
 
 # ==================== LazyVim ====================
