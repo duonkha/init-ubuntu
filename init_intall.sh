@@ -71,6 +71,15 @@ else
 	echo "neovim is already installed."
 fi
 
+# ==================== LazyVim ====================
+LAZYVIM_DIR="$HOME/.config/nvim"
+if [ ! -d "$LAZYVIM_DIR" ]; then
+  echo "Installing LazyVim..."
+  git clone https://github.com/LazyVim/starter $LAZYVIM_DIR
+else
+  echo "LazyVim is already installed."
+fi
+
 # ==================== Tide Prompt ====================
 if ! command -v fisher &>/dev/null; then
 	echo "Installing Fisher package manager for fish..."
