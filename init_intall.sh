@@ -65,9 +65,18 @@ fi
 # ==================== Neovim ====================
 if ! command -v nvim &> /dev/null; then
   echo "Installing latest prebuilt Neovim..."
-  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-  chmod u+x nvim.appimage
-  sudo mv nvim.appimage /usr/local/bin/nvim
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+  sudo rm -rf /opt/nvim
+  sudo tar -C /opt -xzf nvim-linux64.tar.gz
+  
+  if ! grep -q '/opt/nvim-linux64/bin' "$HOME/.bashrc"; then
+    echo "export PATH=\"\$PATH:/opt/nvim-linux64/bin\"" >> "$HOME/.bashrc"
+  fi
+  
+  if ! grep -q '/opt/nvim-linux64/bin' "$FISH_CONFIG_FILE"; then
+    echo "Adding Neovim to Fish shell PATH..."
+    echo "set -Ux PATH \$PATH /opt/nvim-linux64/bin" >> "$FISH_CONFIG_FILE"
+  fi
 else
   echo "neovim is already installed."
 fi
