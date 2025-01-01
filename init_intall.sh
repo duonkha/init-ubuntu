@@ -104,6 +104,14 @@ else
 	echo "Base16 Shell is already configured for Fish."
 fi
 
+# ==================== FZF ====================
+if ! command -v fzf &> /dev/null; then
+  echo "Installing FZF..."
+  sudo apt install -y fzf
+else
+  echo "FZF is already installed."
+fi
+
 # ==================== Post-installation ====================
 
 # Set fish as default shell if not already
