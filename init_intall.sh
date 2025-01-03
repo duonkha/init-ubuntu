@@ -6,7 +6,7 @@ sudo apt update && sudo apt upgrade -y
 
 # ==================== Install Prerequisites ====================
 echo "Installing prerequisites..."
-sudo apt install -y software-properties-common curl git
+sudo apt install -y software-properties-common curl git gcc
 
 # ==================== Fish Shell ====================
 if ! command -v fish &>/dev/null; then
